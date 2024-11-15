@@ -4,8 +4,11 @@ import {
   FETCH_PRODUCTS,
   fetchProductsSuccess,
   ADD_PRODUCT,
+  addProductSuccess,
   DELETE_PRODUCT,
+  deleteProductSuccess,
   UPDATE_PRODUCT,
+  updateProductSuccess,
 } from '../actions/productActions';
 
 const API_URL = 'https://localhost:7190/api/Products';
@@ -14,7 +17,7 @@ const API_URL = 'https://localhost:7190/api/Products';
 function* fetchProductsSaga() {
   try {
     const response = yield call(axios.get, API_URL);
-    yield put(fetchProductsSuccess(response.data));
+    yield put(fetchProductsSuccess(response.data)); 
   } catch (error) {
     console.error('Failed to fetch products:', error);
   }
@@ -24,7 +27,7 @@ function* fetchProductsSaga() {
 function* addProductSaga(action) {
   try {
     const response = yield call(axios.post, API_URL, action.payload);
-    yield put(fetchProductsSuccess(response.data));
+    yield put(addProductSuccess(response.data)); 
   } catch (error) {
     console.error('Failed to add product:', error);
   }
@@ -34,7 +37,7 @@ function* addProductSaga(action) {
 function* deleteProductSaga(action) {
   try {
     yield call(axios.delete, `${API_URL}/${action.payload}`);
-    yield put({ type: FETCH_PRODUCTS }); // Reload list
+    yield put(deleteProductSuccess(action.payload)); 
   } catch (error) {
     console.error('Failed to delete product:', error);
   }
@@ -48,7 +51,7 @@ function* updateProductSaga(action) {
       `${API_URL}/${action.payload.id}`,
       action.payload
     );
-    yield put(fetchProductsSuccess(response.data));
+    yield put(updateProductSuccess(response.data));
   } catch (error) {
     console.error('Failed to update product:', error);
   }

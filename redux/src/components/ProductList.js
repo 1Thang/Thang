@@ -4,7 +4,7 @@ import { fetchProducts } from '../redux/actions/productActions';
 import ProductItem from './ProductItem';
 
 const ProductList = () => {
-  const products = useSelector((state) => state.product.products || []); // Đảm bảo luôn trả về một mảng
+  const products = useSelector((state) => state.product.products || []); 
   const dispatch = useDispatch();
 
   useEffect(() => {
