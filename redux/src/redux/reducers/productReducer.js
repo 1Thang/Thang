@@ -13,7 +13,7 @@ import {
     switch (action.type) {
       case FETCH_PRODUCTS_SUCCESS:
         return { ...state, products: action.payload };
-  
+      
       case ADD_PRODUCT:
         return { ...state, products: [...state.products, action.payload] };
   

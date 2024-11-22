@@ -11,11 +11,10 @@ const ProductItem = ({ product }) => {
   const handleDelete = () => {
     dispatch(deleteProduct(product.id));
   };
-
   const handleToggleComplete = () => {
     dispatch(updateProduct({ ...product, completed: !product.completed }));
   };
-
+  
   const handleEdit = () => {
     if (isEditing && newName !== product.name) {
       dispatch(updateProduct({ ...product, name: newName }));
